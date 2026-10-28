@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
+import cors from "cors";
 
 //rutas privadas
 import barcodeRoutes from "./routes/barcodeRoutes.js";
@@ -21,7 +22,7 @@ import fontRoutes from "./routes/fontRoutes.js";
 
 
 //rutas publicas
-import cartRoutes from "./routes/cartRoutes.js";
+import cartRoutes from "./routes/cart.js";
 import userRoutes from "./routes/users.js";
 
 const app = express();

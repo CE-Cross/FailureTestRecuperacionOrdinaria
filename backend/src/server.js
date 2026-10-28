@@ -4,16 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config({ quiet: true });
 
 import app from './app.js';
-import connectDB from './config/db';
+import connectDB from './config/db.js';
 import { startInventoryJobs } from './jobs/inventoryJobs.js';
 
 const PORT = process.env.PORT || 5000;
 
-const startServer = asyc () => {
+const startServer = async () => {
   await connectDB();
 
   app.listen(PORT, () => {
-    console.log(`API de inventario lista en http://localhost:${PO}`);
+    console.log(`API de inventario lista en http://localhost:${PORT}`);
 
     // Start background jobs
     startInventoryJobs();

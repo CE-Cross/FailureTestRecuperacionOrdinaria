@@ -1,7 +1,7 @@
 import Product from "../models/Product.js";
 import Category from "../models/Category.js";
 import { generateUniqueBarcode } from "../services/barcodeService.js";
-import { createNotifications } from "./notificationController.js";
+import { createNotification } from "./notificationController.js";
 import { sendCriticalStockAlert, sendOutOfStockAlert } from "../services/emailService.js";
 import Settings from "../models/Settings.js";
 
@@ -615,7 +615,7 @@ export const updateVariantStock = async (req, res, next) => {
       ]
         .filter(Boolean)
         .join(" - ");
-      await createNotifications({
+      await createNotification({
         type: "low_stock",
         message: `Stock bajo para ${product.name}${variantDesc ? ` (${variantDesc})` : ""}: ${variantStock} unidades`,
         metadata: { productId: product._id, variantId: product.variants[variantIndex]._id },
@@ -645,4 +645,3 @@ export const updateVariantStock = async (req, res, next) => {
     next(error);
   }
 };
-
